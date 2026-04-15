@@ -61,6 +61,11 @@ const resolvers = {
 
         addEmployee: async (parent, args) => {
             try {
+
+                if (!args.salary || Number(args.salary) < 1000) {
+                    throw new Error("Salary must be at least 1000");
+                }
+
                 const employee = new Employee({
                     ...args,
 
