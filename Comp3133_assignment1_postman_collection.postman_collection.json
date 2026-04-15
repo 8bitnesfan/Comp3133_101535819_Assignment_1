@@ -1,0 +1,328 @@
+{
+  "info": {
+    "_postman_id": "c655420c-5e79-4bad-be37-dde1b893140b",
+    "name": "Comp3133_assignment1_postman_collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48890946",
+    "_collection_link": "https://go.postman.co/collection/48890946-c655420c-5e79-4bad-be37-dde1b893140b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "User Signup",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"mutation Signup($input: SignupInput!) { signup(input: $input) { id username email } }\",\r\n  \"variables\": {\r\n    \"input\": {\r\n      \"username\": \"Aidan\",\r\n      \"email\": \"aidan@example.com\",\r\n      \"password\": \"SuperSecure\"\r\n    }\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"query Login($username: String!, $password: String!) { login(username: $username, password: $password) { token user { id username email } } }\",\r\n  \"variables\": {\r\n    \"username\": \"Aidan\",\r\n    \"password\": \"SuperSecure\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add New Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWZkYzkzMWM5OTUyM2YwMmU5M2EwMCIsImlhdCI6MTc3MjE1Nzg1MywiZXhwIjoxNzcyMjQ0MjUzfQ.7o8xbuVyhwAFJfdZCtfUjN0rCrMcycz5uAADNFtUeIg\"",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"mutation AddEmployee($first_name: String!, $last_name: String!, $email: String!, $gender: String!, $designation: String!, $salary: Float!, $department: String!, $date_of_joining: String!, $employee_photo: String) { addEmployee(first_name: $first_name, last_name: $last_name, email: $email, gender: $gender, designation: $designation, salary: $salary, department: $department, date_of_joining: $date_of_joining, employee_photo: $employee_photo) { id first_name last_name email designation department salary } }\",\r\n  \"variables\": {\r\n    \"first_name\": \"John\",\r\n    \"last_name\": \"Doe\",\r\n    \"email\": \"john.doe@email.com\",\r\n    \"gender\": \"Male\",\r\n    \"designation\": \"Software Developer\",\r\n    \"salary\": 5000,\r\n    \"department\": \"IT\",\r\n    \"date_of_joining\": \"2024-01-10\",\r\n    \"employee_photo\": \"https://example.com/photo.jpg\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all empoyees",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWZkYzkzMWM5OTUyM2YwMmU5M2EwMCIsImlhdCI6MTc3MjE1Nzg1MywiZXhwIjoxNzcyMjQ0MjUzfQ.7o8xbuVyhwAFJfdZCtfUjN0rCrMcycz5uAADNFtUeIg\"",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"query { getEmployees { id first_name last_name email designation department } }\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search Employee By ID",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWZkYzkzMWM5OTUyM2YwMmU5M2EwMCIsImlhdCI6MTc3MjE2Mjg4MCwiZXhwIjoxNzcyMjQ5MjgwfQ.QSbkfB6RTDOwmQGd1vyZePOtDRqkNUPvp4U--x1xwfU\"",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"query GetEmployeeById($id: ID!) { getEmployeeById(id: $id) { id first_name last_name email designation department salary } }\",\r\n  \"variables\": {\r\n    \"id\": \"69a0fd33d14b3fc3304e293d\" // <-- id goes here\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Employee by ID",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWZkYzkzMWM5OTUyM2YwMmU5M2EwMCIsImlhdCI6MTc3MjE2Mjg4MCwiZXhwIjoxNzcyMjQ5MjgwfQ.QSbkfB6RTDOwmQGd1vyZePOtDRqkNUPvp4U--x1xwfU\"",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"mutation UpdateEmployee($id: ID!, $input: UpdateEmployeeInput!) { updateEmployee(id: $id, input: $input) { id first_name last_name email designation department salary } }\",\r\n  \"variables\": {\r\n    \"id\": \"69a0fd33d14b3fc3304e293d\", // <--- id goes here \r\n    \"input\": {\r\n      \"designation\": \"Senior Full Stack Developer\",\r\n      \"salary\": 8000\r\n    }\r\n  }\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search by designation",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWZkYzkzMWM5OTUyM2YwMmU5M2EwMCIsImlhdCI6MTc3MjE2Mjg4MCwiZXhwIjoxNzcyMjQ5MjgwfQ.QSbkfB6RTDOwmQGd1vyZePOtDRqkNUPvp4U--x1xwfU\"",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"query SearchEmployee($designation: String) { searchEmployee(designation: $designation) { id first_name last_name email designation department } }\",\r\n  \"variables\": {\r\n    \"designation\": \"Senior Full Stack Developer\"\r\n  }\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete by ID",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OWZkYzkzMWM5OTUyM2YwMmU5M2EwMCIsImlhdCI6MTc3MjE2Mjg4MCwiZXhwIjoxNzcyMjQ5MjgwfQ.QSbkfB6RTDOwmQGd1vyZePOtDRqkNUPvp4U--x1xwfU\"",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"query\": \"mutation DeleteEmployee($id: ID!) { deleteEmployee(id: $id) }\",\r\n  \"variables\": {\r\n    \"id\": \"69a0fd33d14b3fc3304e293d\"// <---- id goes here\r\n  }\r\n}"
+        },
+        "url": {
+          "raw": "http://localhost:4000/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "4000",
+          "path": [
+            "graphql"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
