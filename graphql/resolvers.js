@@ -59,19 +59,16 @@ const resolvers = {
             return await newUser.save();
         },
 
-        addEmployee: async (parent, args) => {
+        addEmployee: async (parent, { input }) => {
             try {
                 const employee = new Employee({
-                    ...args,
-
-                    salary: Number(args.salary),
-
-                    date_of_joining: args.date_of_joining
-                        ? new Date(args.date_of_joining)
+                    ...input,
+                    salary: Number(input.salary),
+                    date_of_joining: input.date_of_joining
+                        ? new Date(input.date_of_joining)
                         : null,
-
-                    gender: args.gender && args.gender !== ""
-                        ? args.gender
+                    gender: input.gender && input.gender !== ""
+                        ? input.gender
                         : "Other"
                 });
 
@@ -82,7 +79,7 @@ const resolvers = {
 
             } catch (err) {
                 console.error("ADD EMPLOYEE ERROR:", err);
-                throw new Error("Failed to create employee");
+                throw new Error(err.message); // 👈 IMPORTANT
             }
         },
 
